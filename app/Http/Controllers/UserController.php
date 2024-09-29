@@ -146,4 +146,10 @@ class UserController extends Controller
             return response()->json(['error' => 'Failed to delete Items'], 500);
         }
     }
+    public function updateThemeForAllUsers()
+    {
+        User::query()->update(['theme' => json_encode(new \stdClass())]);
+
+        return response()->json(['message' => 'تم تحديث حقل theme لكل المستخدمين بنجاح.']);
+    }
 }

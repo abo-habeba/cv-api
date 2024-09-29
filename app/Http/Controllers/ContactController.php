@@ -27,10 +27,29 @@ class ContactController extends Controller
         return new ContactResource($itme);
     }
 
+    public function getUnreadContactsCount()
+    {
+        $user = auth()->user();
+
+        $unreadCount = $user->contacts()->where('read', 0)->count();
+
+        return response()->json(['unread_count' => $unreadCount]);
+    }
+    public function markAllAsUnread()
+    {
+        $user = auth()->user();
+
+        // تحديث كل الحقول التي قيمتها read = 1
+        $updatedCount = $user->contacts()->where('read', 0)->update(['read' => 1]);
+
+        return response()->json(['updated_count' => $updatedCount]);
+    }
     public function show(Contact $contact)
     {
         return new ContactResource($contact);
     }
+
+
 
     public function destroy(DeleteContactsRequest $request)
     {

@@ -34,6 +34,7 @@ Route::get('php-artisan', function () {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('users-all/{userName}', [UserController::class, 'showAll']);
+Route::get('reset-theme-all-users', [UserController::class, 'updateThemeForAllUsers']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
@@ -72,6 +73,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(ContactController::class)->group(function () {
         Route::post('contacts', 'store');
         Route::get('contacts', 'index');
+        Route::get('contacts-unread', 'getUnreadContactsCount');
+        Route::get('contacts-mark-all-read', 'markAllAsUnread');
         Route::get('contacts/{id}', 'show');
         Route::put('contacts/{id}', 'update');
         Route::post('contacts/delete', 'destroy');

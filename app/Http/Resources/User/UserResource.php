@@ -31,6 +31,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'profile_image' => $this->profile_image ? asset($this->profile_image) : null,
+            'unread_contacts_count' => $this->contacts()->where('read', 0)->count(),
             'hero' => $this->photos->filter(function ($photo) {
                 return $photo->type === 'hero';
             })->map(function ($photo) {

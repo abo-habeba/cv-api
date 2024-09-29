@@ -10,7 +10,7 @@ class Contact extends Model
 {
     use HasFactory,GlobalTrait;
     protected $fillable = [
-        'name', 'email', 'phone', 'message', 'subject', 'user_id',
+        'name', 'email', 'phone', 'message', 'subject', 'read', 'user_id',
     ];
     
     public function user()

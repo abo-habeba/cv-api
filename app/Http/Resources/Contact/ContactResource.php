@@ -22,6 +22,7 @@ class ContactResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'user_id' => $this->user_id,
+            'read' => $this->read,
             'created_at' => isset($this->created_at) ? $this->created_at->format('Y-m-d') : null,
             'updated_at' => isset($this->updated_at) ? $this->updated_at->format('Y-m-d') : null,
         ];
