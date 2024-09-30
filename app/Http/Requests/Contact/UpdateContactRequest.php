@@ -11,7 +11,7 @@ class UpdateContactRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; 
+        return true;
     }
 
     public function rules()
@@ -22,6 +22,7 @@ class UpdateContactRequest extends FormRequest
             'phone' => 'nullable|string|max:255',
             'message' => 'sometimes|required|string',
             'subject' => 'sometimes|required|string|max:255',
+            'read' => 'sometimes',
             'user_id' => 'sometimes|required|exists:users,id',
         ];
     }

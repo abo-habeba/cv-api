@@ -26,7 +26,14 @@ class ContactController extends Controller
 
         return new ContactResource($itme);
     }
+    public function update(UpdateContactRequest $request, $id)
+    {
+        // return $request->validated();
+        $contact = Contact::findOrFail($id);
+        $contact->update($request->validated());
 
+        return new ContactResource($contact);
+    }
     public function getUnreadContactsCount()
     {
         $user = auth()->user();
@@ -39,7 +46,6 @@ class ContactController extends Controller
     {
         $user = auth()->user();
 
-        // تحديث كل الحقول التي قيمتها read = 1
         $updatedCount = $user->contacts()->where('read', 0)->update(['read' => 1]);
 
         return response()->json(['updated_count' => $updatedCount]);

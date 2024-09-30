@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->text('message');
             $table->string('subject');
-            $table->string('read')->default(false);
+            $table->boolean('read')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
