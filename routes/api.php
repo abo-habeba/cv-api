@@ -35,6 +35,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('users-all/{userName}', [UserController::class, 'showAll']);
 Route::get('reset-theme-all-users', [UserController::class, 'updateThemeForAllUsers']);
+Route::post('contacts', [ContactController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
@@ -71,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // ContactController routes
     Route::controller(ContactController::class)->group(function () {
-        Route::post('contacts', 'store');
+        // Route::post('contacts', 'store');
         Route::get('contacts', 'index');
         Route::get('contacts-unread', 'getUnreadContactsCount');
         Route::get('contacts-mark-all-read', 'markAllAsUnread');
